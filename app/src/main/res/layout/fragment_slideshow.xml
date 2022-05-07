@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:padding="20dp"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".ui.Mascota.SlideshowFragment">
+
+
+    <TextView
+        android:paddingBottom="10dp"
+        android:layout_gravity="center"
+        android:textSize="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agregar Nueva Mascota"></TextView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/etCurp"
+                android:layout_width="128dp"
+                android:layout_height="wrap_content"
+                android:hint="Curp"></EditText>
+
+            <EditText
+                android:id="@+id/etNombreMascota"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre Mascota"></EditText>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Raza Mascota"
+                android:id="@+id/etRaza"></EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dueños"></TextView>
+
+            <ListView
+                android:id="@+id/listaPropietario"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnInsertarMascota"
+        android:layout_width="296dp"
+        android:layout_height="68dp"
+        android:layout_gravity="center"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="50dp"
+        android:text="INSERTAR"
+        android:textColor="@color/white"
+        android:textSize="21sp"
+        android:textStyle="bold" />
+
+
+
+    <TextView
+        android:layout_gravity="center"
+        android:textSize="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Modificaciones Mascota"></TextView>
+
+    <EditText
+        android:id="@+id/etBuscar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Dato a Buscar (curp dueño, nombre,raza..)"></EditText>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnBuscarCurp"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="5dp"
+            android:text="BUSCAR CURP"
+            android:paddingRight="15dp"
+            android:textSize="12dp"></Button>
+        <Button
+            android:paddingRight="15dp"
+            android:layout_marginRight="5dp"
+            android:textSize="12dp"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:text="Buscar NOMBRE"
+            android:id="@+id/btnBuscarNombre"></Button>
+        <Button
+            android:layout_marginRight="5dp"
+            android:textSize="12dp"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:text="Buscar Raza"
+            android:id="@+id/btnBuscarRaza"></Button>
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listaMascotas"
+        android:layout_width="match_parent"
+        android:layout_height="188dp" />
+
+
+</LinearLayout>
