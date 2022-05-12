@@ -15,6 +15,7 @@ class PropietarioActualizar : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivityPropietarioActualizarBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setTitle("Actualizar Propietario")
 
         idActualizar=intent.extras!!.getString("idActualizar")!!
 

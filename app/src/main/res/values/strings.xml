@@ -7,7 +7,18 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_home">Principal</string>
+    <string name="menu_gallery">Propietario</string>
+    <string name="menu_slideshow">Mascota</string>
+
+    <string-array name="razas">
+        <item>Raza...</item>
+        <item>Perro</item>
+        <item>Gato</item>
+        <item>Vaca</item>
+        <item>Ave</item>
+        <item>Caballo</item>
+        <item>Otro</item>
+    </string-array>
+
 </resources>

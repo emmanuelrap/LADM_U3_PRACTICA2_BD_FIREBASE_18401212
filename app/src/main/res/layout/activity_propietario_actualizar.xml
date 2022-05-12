@@ -4,21 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="15dp"
     android:orientation="vertical"
     tools:context=".PropietarioActualizar">
 
-
+<TextView
+    android:layout_marginBottom="10dp"
+    android:textStyle="bold"
+    android:textSize="25sp"
+    android:textAlignment="center"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="ACTUALIZACION DE PROPIETARIO"></TextView>
     <EditText
-        android:layout_width="match_parent"
+        android:id="@+id/etCurp"
+        android:layout_width="221dp"
         android:layout_height="wrap_content"
-        android:hint="Curp"
-        android:id="@+id/etCurp"></EditText>
+        android:hint="Curp"></EditText>
 
     <EditText
-        android:layout_width="match_parent"
+        android:id="@+id/etNombrePropietario"
+        android:layout_width="223dp"
         android:layout_height="wrap_content"
         android:hint="nombrePropietario"
-        android:id="@+id/etNombrePropietario"></EditText>
+        android:inputType="textPersonName"></EditText>
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -32,12 +41,14 @@
 
 
             <EditText
+                android:inputType="number"
                 android:id="@+id/etTelefono"
                 android:layout_width="131dp"
                 android:layout_height="wrap_content"
                 android:hint="telefono"></EditText>
 
             <EditText
+                android:inputType="number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="edad"
@@ -58,10 +69,10 @@
     </LinearLayout>
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/veterinaria"
-        ></ImageView>
+        android:layout_width="316dp"
+        android:layout_height="288dp"
+        android:layout_gravity="center"
+        android:src="@drawable/veterinaria"></ImageView>
 
     <Button
         android:layout_width="wrap_content"

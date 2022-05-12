@@ -25,6 +25,7 @@ class SlideshowFragment : Fragment() {
     var arregloIDsPropietarios = ArrayList<String>()
     var arregloCurps = ArrayList<String>()
     var arregloNombreMascota = ArrayList<String>()
+    var arregloDatos = ArrayList<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -62,14 +63,14 @@ class SlideshowFragment : Fragment() {
                 binding.listaPropietario.adapter= ArrayAdapter(requireContext(), R.layout.simple_list_item_1,arregloPropietarios)
                 binding.listaPropietario.setOnItemClickListener { adapterView, view, posicion, l ->
                     AlertDialog.Builder(requireContext())
-                        .setMessage("¿Desea agregar como propietario a [ ${arregloPropietarios.get(posicion)} ]?")
+                        .setMessage("¿Desea agregar como propietario a  ${arregloPropietarios.get(posicion)} ?")
                         .setPositiveButton("Si") {d,i ->
                             binding.etCurp.setText(arregloCurps.get(posicion))
                         }
-                        .setNeutralButton("Cerrar") {d,i -> }
+                        .setNeutralButton("No") {d,i -> }
                         .show()
                 }
-            } //---------------------------------------------------------------------------------
+            } //fin evento snapshoot
 
 
         FirebaseFirestore.getInstance()//--------------M A S C O T A ---------------------------------------
@@ -87,10 +88,10 @@ class SlideshowFragment : Fragment() {
 
 
                 for(documento in query!!){//ciclo que recoje los datos de la colleccion
-                    var cadena = "idMascota: ${documento.getString("id_mascota")}\n" +
-                                 "Raza: ${documento.getString("raza")}\n"+
-                                 "Mascota: ${documento.getString("nombre")}\n"+
-                                 "Dueño: ${documento.getString("curp_propietario") }"
+                    var cadena = "ID: ${documento.getString("id_mascota")}\n" +
+                                 "RAZA: ${documento.getString("raza")}\n"+
+                                 "MASCOTA: ${documento.getString("nombre")}\n"+
+                                 "DUEÑO: ${documento.getString("curp_propietario") }"
                     arregloMascota.add(cadena)
                     arregloNombreMascota.add(""+documento.getString("nombre"))
                     arregloIDsMascota.add(documento.id) //obtiene el ID de los documentos
@@ -111,8 +112,8 @@ class SlideshowFragment : Fragment() {
                         }
                         .setNeutralButton("Cerrar") {d,i -> }
                         .show()
-                }
-            } //---------------------------------------------------------------------------------
+                }//Clic Lista Mascotas
+            } //-----------evento actualizacion de datos en FB -------------
 
         binding.btnInsertarMascota.setOnClickListener {
             val baseRemota = FirebaseFirestore.getInstance()
@@ -137,6 +138,111 @@ class SlideshowFragment : Fragment() {
             binding.etCurp.setText("")
 
         }//boton para intertar en BDremota
+
+        binding.btnBuscarCurp.setOnClickListener {
+            if(binding.etBuscar.text.toString()==""){
+                toast("Pon una cadena para buscar...")
+            }else{
+                val baseRemota = FirebaseFirestore.getInstance()
+                // var consulta= baseRemota.collection("propietario").whereEqualTo("nombre", binding.etBuscar.text.toString())
+                var consulta = baseRemota.collection("mascota").orderBy("curp_propietario")
+                    .startAt(binding.etBuscar.text.toString())
+                    .endAt(binding.etBuscar.text.toString() + '\uf8ff')
+                consulta.get()
+                    .addOnSuccessListener {
+                        arregloDatos.clear()
+                        var cadena = ""
+                        for (documento in it) {
+                            cadena = "NOMBRE: ${documento.getString("nombre")} \n" +
+                                    "CURP: ${documento.getString("curp_propietario")} \n" +
+                                    "RAZA: ${documento.getString("raza")}\n" +
+                                    "ID: ${documento.getString("id_mascota")}"
+                            arregloDatos.add(cadena)
+                        }
+
+                        if (arregloDatos.size == 0)
+                            arregloDatos.add("> NO SE ENCONTRARON DATOS <")
+                        binding.listaMascotas.adapter = ArrayAdapter(requireContext(), R.layout.simple_list_item_1, arregloDatos)
+                        return@addOnSuccessListener
+                    }
+                    .addOnFailureListener {
+                        AlertDialog.Builder(requireContext())
+                            .setMessage(it.message)
+                            .show()
+                    }
+            }
+        }//---c u r p
+
+
+        binding.btnBuscarNombre.setOnClickListener {
+            if(binding.etBuscar.text.toString()==""){
+                toast("Pon una cadena para buscar...")
+            }else{
+                val baseRemota = FirebaseFirestore.getInstance()
+                // var consulta= baseRemota.collection("propietario").whereEqualTo("nombre", binding.etBuscar.text.toString())
+                var consulta = baseRemota.collection("mascota").orderBy("nombre")
+                    .startAt(binding.etBuscar.text.toString())
+                    .endAt(binding.etBuscar.text.toString() + '\uf8ff')
+                consulta.get()
+                    .addOnSuccessListener {
+                        arregloDatos.clear()
+                        var cadena = ""
+                        for (documento in it) {
+                            cadena = "NOMBRE: ${documento.getString("nombre")} \n" +
+                                    "CURP: ${documento.getString("curp_propietario")} \n" +
+                                    "RAZA: ${documento.getString("raza")}\n" +
+                                    "ID: ${documento.getString("id_mascota")}"
+                            arregloDatos.add(cadena)
+                        }
+
+                        if (arregloDatos.size == 0)
+                            arregloDatos.add("> NO SE ENCONTRARON DATOS <")
+                        binding.listaMascotas.adapter = ArrayAdapter(requireContext(), R.layout.simple_list_item_1, arregloDatos)
+                        return@addOnSuccessListener
+                    }
+                    .addOnFailureListener {
+                        AlertDialog.Builder(requireContext())
+                            .setMessage(it.message)
+                            .show()
+                    }
+            }
+        }// -- n o m b r e
+
+
+        binding.btnBuscarRaza.setOnClickListener {
+            if(binding.etBuscar.text.toString()==""){
+                toast("Pon una cadena para buscar...")
+            }else{
+                val baseRemota = FirebaseFirestore.getInstance()
+                // var consulta= baseRemota.collection("propietario").whereEqualTo("nombre", binding.etBuscar.text.toString())
+                var consulta = baseRemota.collection("mascota").orderBy("raza")
+                    .startAt(binding.etBuscar.text.toString())
+                    .endAt(binding.etBuscar.text.toString() + '\uf8ff')
+                consulta.get()
+                    .addOnSuccessListener {
+                        arregloDatos.clear()
+                        var cadena = ""
+                        for (documento in it) {
+                            cadena = "NOMBRE: ${documento.getString("nombre")} \n" +
+                                    "CURP: ${documento.getString("curp_propietario")} \n" +
+                                    "RAZA: ${documento.getString("raza")}\n" +
+                                    "ID: ${documento.getString("id_mascota")}"
+                            arregloDatos.add(cadena)
+                        }
+
+                        if (arregloDatos.size == 0)
+                            arregloDatos.add("> NO SE ENCONTRARON DATOS <")
+                        binding.listaMascotas.adapter = ArrayAdapter(requireContext(), R.layout.simple_list_item_1, arregloDatos)
+                        return@addOnSuccessListener
+                    }
+                    .addOnFailureListener {
+                        AlertDialog.Builder(requireContext())
+                            .setMessage(it.message)
+                            .show()
+                    }
+            }
+        }//-- r a z a
+
 
 
 

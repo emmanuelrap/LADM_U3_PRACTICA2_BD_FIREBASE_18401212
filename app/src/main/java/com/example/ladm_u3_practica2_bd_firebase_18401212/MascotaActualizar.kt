@@ -18,6 +18,8 @@ class MascotaActualizar : AppCompatActivity() {
         binding= ActivityMascotaActualizarBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+       setTitle("Actualizar Mascota")
+
         idActualizar=intent.extras!!.getString("idActualizar")!!
         idActualizarPropietario=intent.extras!!.getString("idActualizarPropietario")!!
 
@@ -43,10 +45,10 @@ class MascotaActualizar : AppCompatActivity() {
             .document(idActualizarPropietario)
             .get()
             .addOnSuccessListener {
-                binding.txtcurp.setText(it.getString("curp"))
-                binding.txtedadPropietario.setText(it.getString("edad"))
-                binding.txtnombrePropietario.setText(it.getString("nombre")) // Numerico
-                binding.txttelefono.setText(it.getString("telefono"))
+                binding.etCurp.setText(it.getString("curp"))
+                binding.etEdadPropietario.setText(it.getString("edad"))
+                binding.etNombrePropietario.setText(it.getString("nombre")) // Numerico
+                binding.etTelefono.setText(it.getString("telefono"))
             }
             .addOnFailureListener{
                 AlertDialog.Builder(this)
@@ -63,10 +65,10 @@ class MascotaActualizar : AppCompatActivity() {
             val baseRemota = FirebaseFirestore.getInstance()
             baseRemota.collection("propietario")//---------PROPIETARIO (BOTON)--------------------------
                 .document(idActualizarPropietario)
-                .update("nombre",binding.txtnombrePropietario.text.toString(),
-                    "curp",binding.txtcurp.text.toString(),
-                    "edad",binding.txtedadPropietario.text.toString(),
-                    "telefono",binding.txttelefono.text.toString()
+                .update("nombre",binding.etNombrePropietario.text.toString(),
+                    "curp",binding.etCurp.text.toString(),
+                    "edad",binding.etEdadPropietario.text.toString(),
+                    "telefono",binding.etTelefono.text.toString()
                 )
                 .addOnFailureListener() {
                     AlertDialog.Builder(this)
@@ -76,17 +78,17 @@ class MascotaActualizar : AppCompatActivity() {
                 }
                 .addOnSuccessListener {
                     Toast.makeText(this,"Se actualizo Correctamente", Toast.LENGTH_LONG).show()
-                    binding.txtedadPropietario.text.clear()
-                    binding.txttelefono.text.clear()
-                    binding.txtedadPropietario.text.clear()
-                    binding.txtnombrePropietario.text.clear()
+                    binding.etEdadPropietario.text.clear()
+                    binding.etTelefono.text.clear()
+                    binding.etEdadPropietario.text.clear()
+                    binding.etNombrePropietario.text.clear()
                     finish()
                 }//--------------------------
 
             baseRemota.collection("mascota")//---------MASCOTA (BOTON)---------------------------
                 .document(idActualizar)
                 .update("nombre",binding.etNombre.text.toString(),
-                    "curp_propietario",binding.txtcurp.text.toString(),
+                    "curp_propietario",binding.etCurp.text.toString(),
                     "raza",binding.etRaza.text.toString(),
                     "id_mascota",binding.etID.text.toString()
                 )

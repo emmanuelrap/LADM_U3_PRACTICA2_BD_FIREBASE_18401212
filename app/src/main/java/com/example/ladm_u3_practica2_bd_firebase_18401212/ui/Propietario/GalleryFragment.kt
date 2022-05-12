@@ -22,6 +22,7 @@ class GalleryFragment : Fragment() {
     private var _binding: FragmentDuenoRegistroBinding? = null
     val arregloDatos = ArrayList<String>()
     var arregloIDs = ArrayList<String>()
+    var arregloNombres = ArrayList<String>()
 
     private val binding get() = _binding!!
 
@@ -35,7 +36,6 @@ class GalleryFragment : Fragment() {
 
         _binding = FragmentDuenoRegistroBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
 
 
         FirebaseFirestore.getInstance()
@@ -54,19 +54,24 @@ class GalleryFragment : Fragment() {
 
                 for(documento in query!!){//ciclo que recoje los datos de la colleccion
                     var cadena = "Curp: ${documento.getString("curp")}\n" +
-                            " Nombre: ${documento.getString("nombre") }"+
-                            " Edad: ${documento.getString("edad") }"+
-                            " telefono: ${documento.getString("telefono") }"
+                            "Nombre: ${documento.getString("nombre") }\n"+
+                            "Edad: ${documento.getString("edad") +" años" }\n"+
+                            "Telefono: ${documento.getString("telefono") }"
                     arregloDatos.add(cadena)
+                    arregloNombres.add(""+documento.getString("nombre"))
                     arregloIDs.add(documento.id) //obtiene el ID de los documentos
+
                 }
 
+                if(arregloDatos.size==0)
+                    arregloDatos.add("> NO SE ENCONTRARON DATOS <")
                 binding.listaPropietario.adapter= ArrayAdapter(requireContext(), R.layout.simple_list_item_1,arregloDatos)
 
                 binding.listaPropietario.setOnItemClickListener { adapterView, view, posicion, l ->
                     val idsFB = arregloIDs.get(posicion)
+                    val nombresFB = arregloNombres.get(posicion)
                     AlertDialog.Builder(requireContext())
-                        .setMessage("¿Desea Elimnar o Modificar a [ ${idsFB} ]?")
+                        .setMessage("¿Desea Elimnar o Modificar a  ${nombresFB} ?")
                         .setNegativeButton("Eliminar") {d,i ->
                             eliminar(idsFB)
                         }
@@ -104,6 +109,143 @@ class GalleryFragment : Fragment() {
             binding.etTelefono.setText("")
 
         }//boton para intertar en BDremota
+
+        binding.btnBuscar.setOnClickListener {
+            if(binding.etBuscar.text.toString()==""){
+                toast("Pon una cadena para buscar...")
+            }else{
+            val baseRemota = FirebaseFirestore.getInstance()
+            // var consulta= baseRemota.collection("propietario").whereEqualTo("nombre", binding.etBuscar.text.toString())
+            var consulta = baseRemota.collection("propietario").orderBy("curp")
+                .startAt(binding.etBuscar.text.toString())
+                .endAt(binding.etBuscar.text.toString() + '\uf8ff')
+            consulta.get()
+                .addOnSuccessListener {
+                    arregloDatos.clear()
+                    var cadena = ""
+                    for (documento in it) {
+                        cadena = "NOMBRE: ${documento.getString("nombre")} \n" +
+                                "CURP: ${documento.getString("curp")} \n" +
+                                "EDAD: ${documento.getString("edad")}\n" +
+                                "telefono: ${documento.getString("telefono")}"
+                        arregloDatos.add(cadena)
+                    }
+
+                    if (arregloDatos.size == 0)
+                        arregloDatos.add("> NO SE ENCONTRARON DATOS <")
+                    binding.listaPropietario.adapter =
+                        ArrayAdapter(requireContext(), R.layout.simple_list_item_1, arregloDatos)
+                    return@addOnSuccessListener
+                }
+                .addOnFailureListener {
+                    AlertDialog.Builder(requireContext())
+                        .setMessage(it.message)
+                        .show()
+                }
+           }
+        }
+
+
+        binding.btnBuscarNombre.setOnClickListener {
+            if(binding.etBuscar.text.toString()==""){
+                toast("Pon una cadena para buscar...")
+            }else{
+            val baseRemota = FirebaseFirestore.getInstance()
+            // var consulta= baseRemota.collection("propietario").whereEqualTo("nombre", binding.etBuscar.text.toString())
+            var consulta=baseRemota.collection("propietario").orderBy("nombre").startAt( binding.etBuscar.text.toString()).endAt( binding.etBuscar.text.toString()+'\uf8ff')
+            consulta.get()
+                .addOnSuccessListener {
+                    arregloDatos.clear()
+                    var cadena=""
+                    for (documento in it) {
+                        cadena ="NOMBRE: ${documento.getString("nombre")} \n" +
+                                "CURP: ${documento.getString("curp")} \n" +
+                                "EDAD: ${documento.getString("edad")}\n" +
+                                "telefono: ${documento.getString("telefono")}"
+                        arregloDatos.add(cadena)
+                    }
+
+                    if(arregloDatos.size==0)
+                        arregloDatos.add("> NO SE ENCONTRARON DATOS <")
+                    binding.listaPropietario.adapter= ArrayAdapter(requireContext(), R.layout.simple_list_item_1,arregloDatos)
+                    return@addOnSuccessListener
+                }
+                .addOnFailureListener {
+                    AlertDialog.Builder(requireContext())
+                        .setMessage(it.message)
+                        .show()
+                }
+        }
+        }// ------nombre
+
+
+        binding.btnBuscarTelefono.setOnClickListener {
+            if(binding.etBuscar.text.toString()==""){
+                toast("Pon una cadena para buscar...")
+            }else{
+            val baseRemota = FirebaseFirestore.getInstance()
+            // var consulta= baseRemota.collection("propietario").whereEqualTo("nombre", binding.etBuscar.text.toString())
+            var consulta=baseRemota.collection("propietario").orderBy("telefono").startAt( binding.etBuscar.text.toString()).endAt( binding.etBuscar.text.toString()+'\uf8ff')
+            consulta.get()
+                .addOnSuccessListener {
+                    arregloDatos.clear()
+                    var cadena=""
+                    for (documento in it) {
+                        cadena ="NOMBRE: ${documento.getString("nombre")} \n" +
+                                "CURP: ${documento.getString("curp")} \n" +
+                                "EDAD: ${documento.getString("edad")}\n" +
+                                "telefono: ${documento.getString("telefono")}"
+                        arregloDatos.add(cadena)
+                    }
+                    if(arregloDatos.size==0)
+                        arregloDatos.add("> NO SE ENCONTRARON DATOS <")
+                    binding.listaPropietario.adapter= ArrayAdapter(requireContext(), R.layout.simple_list_item_1,arregloDatos)
+
+
+                    return@addOnSuccessListener
+                }
+                .addOnFailureListener {
+                    AlertDialog.Builder(requireContext())
+                        .setMessage(it.message)
+                        .show()
+                }
+            }
+        }//----telefono
+
+
+        binding.btnBuscarEdad.setOnClickListener {
+            if(binding.etBuscar.text.toString()==""){
+                toast("Pon una cadena para buscar...")
+            }else{
+            val baseRemota = FirebaseFirestore.getInstance()
+            // var consulta= baseRemota.collection("propietario").whereEqualTo("nombre", binding.etBuscar.text.toString())
+            var consulta=baseRemota.collection("propietario").orderBy("edad").startAt( binding.etBuscar.text.toString()).endAt( binding.etBuscar.text.toString()+'\uf8ff')
+            consulta.get()
+                .addOnSuccessListener {
+                    arregloDatos.clear()
+                    var cadena=""
+                    for (documento in it) {
+                        cadena ="NOMBRE: ${documento.getString("nombre")} \n" +
+                                "CURP: ${documento.getString("curp")} \n" +
+                                "EDAD: ${documento.getString("edad")}\n" +
+                                "telefono: ${documento.getString("telefono")}"
+                        arregloDatos.add(cadena)
+                    }
+
+                    if(arregloDatos.size==0)
+                        arregloDatos.add("> NO SE ENCONTRARON DATOS <")
+                    binding.listaPropietario.adapter= ArrayAdapter(requireContext(), R.layout.simple_list_item_1,arregloDatos)
+                    return@addOnSuccessListener
+                }
+                .addOnFailureListener {
+                    AlertDialog.Builder(requireContext())
+                        .setMessage(it.message)
+                        .show()
+                }
+            }
+        }//-----Edad
+
+
 
 
 

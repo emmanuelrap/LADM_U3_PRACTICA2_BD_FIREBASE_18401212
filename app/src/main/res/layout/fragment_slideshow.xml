@@ -3,13 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:padding="20dp"
+    android:layout_margin="15dp"
     android:orientation="vertical"
+
     android:layout_height="match_parent"
     tools:context=".ui.Mascota.SlideshowFragment">
 
 
     <TextView
+        android:textStyle="bold"
         android:paddingBottom="10dp"
         android:layout_gravity="center"
         android:textSize="25dp"
@@ -35,7 +37,8 @@
 
             <EditText
                 android:id="@+id/etCurp"
-                android:layout_width="128dp"
+                android:layout_width="150dp"
+                android:enabled="false"
                 android:layout_height="wrap_content"
                 android:hint="Curp"></EditText>
 
@@ -58,6 +61,8 @@
             android:orientation="vertical">
 
             <TextView
+                android:textStyle="bold"
+                android:textSize="18sp"
                 android:textAlignment="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -65,28 +70,44 @@
 
             <ListView
                 android:id="@+id/listaPropietario"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp" />
 
         </LinearLayout>
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnInsertarMascota"
-        android:layout_width="296dp"
-        android:layout_height="68dp"
-        android:layout_gravity="center"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="50dp"
-        android:text="INSERTAR"
-        android:textColor="@color/white"
-        android:textSize="21sp"
-        android:textStyle="bold" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="115dp"
+            android:layout_height="103dp"
+            android:src="@drawable/gatito"></ImageView>
+
+        <Button
+            android:id="@+id/btnInsertarMascota"
+            android:layout_width="230dp"
+            android:layout_height="76dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="15dp"
+
+            android:gravity="center"
+            android:text="INSERTAR"
+            android:textColor="@color/white"
+            android:textSize="21sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
 
 
 
     <TextView
+        android:layout_marginTop="30dp"
+        android:textStyle="bold"
         android:layout_gravity="center"
         android:textSize="25dp"
         android:layout_width="wrap_content"
@@ -94,10 +115,11 @@
         android:text="Modificaciones Mascota"></TextView>
 
     <EditText
+      android:layout_gravity="center"
         android:id="@+id/etBuscar"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Dato a Buscar (curp dueño, nombre,raza..)"></EditText>
+        android:hint="Dato a Buscar (curp,nombre,raza..)"></EditText>
 
 
     <LinearLayout
@@ -111,7 +133,7 @@
             android:layout_height="60dp"
             android:layout_marginRight="5dp"
             android:text="BUSCAR CURP"
-            android:paddingRight="15dp"
+            android:layout_marginLeft="30dp"
             android:textSize="12dp"></Button>
         <Button
             android:paddingRight="15dp"
@@ -132,9 +154,11 @@
     </LinearLayout>
 
     <ListView
+        android:layout_marginTop="10dp"
         android:id="@+id/listaMascotas"
-        android:layout_width="match_parent"
-        android:layout_height="188dp" />
+        android:layout_width="256dp"
+        android:layout_height="199dp"
+        android:layout_gravity="center" />
 
 
 </LinearLayout>

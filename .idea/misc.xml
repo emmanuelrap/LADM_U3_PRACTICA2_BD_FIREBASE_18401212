@@ -3,13 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/EmmanuelZ/AndroidStudioProjects/LADM_U3_PRACTICA2_BD_FIREBASE_18401212/app/src/main/res/layout/activity_mascota_actualizar.xml" value="0.18070652173913043" />
+        <entry key="..\:/Users/EmmanuelZ/AndroidStudioProjects/LADM_U3_PRACTICA2_BD_FIREBASE_18401212/app/src/main/res/drawable-v24/custom_person_icon.xml" value="0.174" />
+        <entry key="..\:/Users/EmmanuelZ/AndroidStudioProjects/LADM_U3_PRACTICA2_BD_FIREBASE_18401212/app/src/main/res/drawable-v24/custom_phone_icon.xml" value="0.166" />
+        <entry key="..\:/Users/EmmanuelZ/AndroidStudioProjects/LADM_U3_PRACTICA2_BD_FIREBASE_18401212/app/src/main/res/drawable-v24/ic_cats.xml" value="0.129" />
+        <entry key="..\:/Users/EmmanuelZ/AndroidStudioProjects/LADM_U3_PRACTICA2_BD_FIREBASE_18401212/app/src/main/res/drawable-v24/ic_person.xml" value="0.1" />
+        <entry key="..\:/Users/EmmanuelZ/AndroidStudioProjects/LADM_U3_PRACTICA2_BD_FIREBASE_18401212/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/EmmanuelZ/AndroidStudioProjects/LADM_U3_PRACTICA2_BD_FIREBASE_18401212/app/src/main/res/layout/activity_mascota_actualizar.xml" value="0.25" />
         <entry key="..\:/Users/EmmanuelZ/AndroidStudioProjects/LADM_U3_PRACTICA2_BD_FIREBASE_18401212/app/src/main/res/layout/activity_propietario_actualizar.xml" value="0.18070652173913043" />
+        <entry key="..\:/Users/EmmanuelZ/AndroidStudioProjects/LADM_U3_PRACTICA2_BD_FIREBASE_18401212/app/src/main/res/layout/app_bar_main.xml" value="0.1" />
         <entry key="..\:/Users/EmmanuelZ/AndroidStudioProjects/LADM_U3_PRACTICA2_BD_FIREBASE_18401212/app/src/main/res/layout/content_main.xml" value="0.18070652173913043" />
-        <entry key="..\:/Users/EmmanuelZ/AndroidStudioProjects/LADM_U3_PRACTICA2_BD_FIREBASE_18401212/app/src/main/res/layout/fragment_dueno_registro.xml" value="0.1" />
+        <entry key="..\:/Users/EmmanuelZ/AndroidStudioProjects/LADM_U3_PRACTICA2_BD_FIREBASE_18401212/app/src/main/res/layout/fragment_dueno_registro.xml" value="0.22" />
         <entry key="..\:/Users/EmmanuelZ/AndroidStudioProjects/LADM_U3_PRACTICA2_BD_FIREBASE_18401212/app/src/main/res/layout/fragment_gallery.xml" value="0.18070652173913043" />
         <entry key="..\:/Users/EmmanuelZ/AndroidStudioProjects/LADM_U3_PRACTICA2_BD_FIREBASE_18401212/app/src/main/res/layout/fragment_home.xml" value="0.18070652173913043" />
-        <entry key="..\:/Users/EmmanuelZ/AndroidStudioProjects/LADM_U3_PRACTICA2_BD_FIREBASE_18401212/app/src/main/res/layout/fragment_slideshow.xml" value="0.18070652173913043" />
+        <entry key="..\:/Users/EmmanuelZ/AndroidStudioProjects/LADM_U3_PRACTICA2_BD_FIREBASE_18401212/app/src/main/res/layout/fragment_slideshow.xml" value="0.25" />
         <entry key="..\:/Users/EmmanuelZ/AndroidStudioProjects/LADM_U3_PRACTICA2_BD_FIREBASE_18401212/app/src/main/res/layout/nav_header_main.xml" value="0.18070652173913043" />
       </map>
     </option>
